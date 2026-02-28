@@ -1,9 +1,9 @@
-﻿{
+{
   "name": "scriptit",
   "displayName": "ScriptIt",
   "description": "Run, navigate, and lint Makefiles, Shell scripts, PowerShell scripts, and Batch files from one extension.",
   "version": "0.0.1",
-  "publisher": "shellrag",
+  "publisher": "siddy",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -12,7 +12,6 @@
   "engines": { "vscode": "^1.85.0" },
   "categories": ["Programming Languages", "Linters", "Other"],
   "keywords": ["makefile", "shell", "bash", "powershell", "batch", "script runner", "codelens", "task runner"],
-  "icon": "images/icon.png",
   "galleryBanner": { "color": "#1e1e1e", "theme": "dark" },
   "activationEvents": [
     "workspaceContains:**/Makefile",
