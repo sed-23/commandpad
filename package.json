@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/rsvsu/scriptit"
+    "url": "https://github.com/sed-23/scriptit"
   },
   "engines": { "vscode": "^1.85.0" },
   "categories": ["Programming Languages", "Linters", "Other"],
