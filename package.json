@@ -1,6 +1,6 @@
 {
   "name": "commandpad",
-  "displayName": "CommandPad",
+  "displayName": "scripting utils",
   "description": "Your launchpad for scripts & configs. Run targets, navigate functions, lint issues — across Makefiles, Shell, PowerShell, Batch, .env and config files.",
   "version": "0.1.0",
   "publisher": "siddy",
