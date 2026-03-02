@@ -6,7 +6,7 @@ export class ScriptDiagnosticsManager {
   private disposables: vscode.Disposable[] = [];
 
   constructor(private provider: LanguageProvider) {
-    this.collection = vscode.languages.createDiagnosticCollection(`commandpad-${provider.id}`);
+    this.collection = vscode.languages.createDiagnosticCollection(`scriptkit-${provider.id}`);
   }
 
   activate(): void {

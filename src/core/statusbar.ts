@@ -11,7 +11,7 @@ export class StatusBarManager {
 
   constructor() {
     this.item = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 50);
-    this.item.command = 'commandpad.pickTarget';
+    this.item.command = 'scriptkit.pickTarget';
     this.item.tooltip = 'Click to pick & run a target';
   }
 

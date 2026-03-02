@@ -10,7 +10,7 @@ export class ScriptRunner {
       terminal = undefined;
     }
     if (!terminal) {
-      terminal = vscode.window.createTerminal({ name: `CommandPad: ${providerId}`, cwd });
+      terminal = vscode.window.createTerminal({ name: `ScriptKit: ${providerId}`, cwd });
       this.terminals.set(providerId, terminal);
     }
     terminal.show();

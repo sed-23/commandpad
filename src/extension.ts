@@ -19,8 +19,8 @@ const diagnosticsManagers: ScriptDiagnosticsManager[] = [];
 let statusBar: StatusBarManager;
 
 export function activate(context: vscode.ExtensionContext) {
-  const output = vscode.window.createOutputChannel('CommandPad');
-  output.appendLine('CommandPad is now active!');
+  const output = vscode.window.createOutputChannel('ScriptKit');
+  output.appendLine('ScriptKit is now active!');
 
   // Status bar
   statusBar = new StatusBarManager();
@@ -35,11 +35,11 @@ export function activate(context: vscode.ExtensionContext) {
   // Command: run a specific target (used by CodeLens)
   context.subscriptions.push(
     vscode.commands.registerCommand(
-      'commandpad.runTarget',
+      'scriptkit.runTarget',
       (providerId: string, target: ScriptTarget, filePath: string) => {
         const provider = allProviders.find((p) => p.id === providerId);
         if (!provider) {
-          vscode.window.showErrorMessage(`CommandPad: Unknown provider "${providerId}"`);
+          vscode.window.showErrorMessage(`ScriptKit: Unknown provider "${providerId}"`);
           return;
         }
         const command = provider.buildCommand(target, filePath);
@@ -52,10 +52,10 @@ export function activate(context: vscode.ExtensionContext) {
 
   // Command: pick a target from the current file via Quick Pick
   context.subscriptions.push(
-    vscode.commands.registerCommand('commandpad.pickTarget', async () => {
+    vscode.commands.registerCommand('scriptkit.pickTarget', async () => {
       const editor = vscode.window.activeTextEditor;
       if (!editor) {
-        vscode.window.showWarningMessage('CommandPad: No active editor.');
+        vscode.window.showWarningMessage('ScriptKit: No active editor.');
         return;
       }
 
@@ -64,14 +64,14 @@ export function activate(context: vscode.ExtensionContext) {
 
       if (!provider) {
         vscode.window.showWarningMessage(
-          `CommandPad: No provider for this file type.`
+          `ScriptKit: No provider for this file type.`
         );
         return;
       }
 
       const targets = provider.parseTargets(doc.getText());
       if (targets.length === 0) {
-        vscode.window.showInformationMessage('CommandPad: No targets found in this file.');
+        vscode.window.showInformationMessage('ScriptKit: No targets found in this file.');
         return;
       }
 
@@ -99,7 +99,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   // Command: list all targets across workspace
   context.subscriptions.push(
-    vscode.commands.registerCommand('commandpad.listAllTargets', async () => {
+    vscode.commands.registerCommand('scriptkit.listAllTargets', async () => {
       const allItems: {
         label: string;
         description: string;
@@ -133,7 +133,7 @@ export function activate(context: vscode.ExtensionContext) {
       }
 
       if (allItems.length === 0) {
-        vscode.window.showInformationMessage('CommandPad: No targets found in workspace.');
+        vscode.window.showInformationMessage('ScriptKit: No targets found in workspace.');
         return;
       }
 
@@ -244,14 +244,14 @@ function registerProvider(
   // Task Provider
   context.subscriptions.push(
     vscode.tasks.registerTaskProvider(
-      `commandpad-${provider.id}`,
+      `scriptkit-${provider.id}`,
       new ScriptTaskProvider(provider)
     )
   );
 
   // Diagnostics
   if (provider.getDiagnostics) {
-    const config = vscode.workspace.getConfiguration('commandpad');
+    const config = vscode.workspace.getConfiguration('scriptkit');
     if (config.get<boolean>('enableDiagnostics', true)) {
       const mgr = new ScriptDiagnosticsManager(provider);
       mgr.activate();

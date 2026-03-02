@@ -1,13 +1,13 @@
 {
-  "name": "commandpad",
-  "displayName": "scripting utils",
+  "name": "scriptkit",
+  "displayName": "ScriptKit",
   "description": "Your launchpad for scripts & configs. Run targets, navigate functions, lint issues — across Makefiles, Shell, PowerShell, Batch, .env and config files.",
   "version": "0.1.1",
   "publisher": "siddy",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sed-23/commandpad"
+    "url": "https://github.com/sed-23/scriptkit"
   },
   "engines": {
     "vscode": "^1.85.0"
@@ -93,55 +93,55 @@
     ],
     "commands": [
       {
-        "command": "commandpad.runTarget",
-        "title": "CommandPad: Run Target"
+        "command": "scriptkit.runTarget",
+        "title": "ScriptKit: Run Target"
       },
       {
-        "command": "commandpad.pickTarget",
-        "title": "CommandPad: Pick & Run Target"
+        "command": "scriptkit.pickTarget",
+        "title": "ScriptKit: Pick & Run Target"
       },
       {
-        "command": "commandpad.listAllTargets",
-        "title": "CommandPad: List All Targets in Workspace"
+        "command": "scriptkit.listAllTargets",
+        "title": "ScriptKit: List All Targets in Workspace"
       },
       {
-        "command": "commandpad.goToTarget",
-        "title": "CommandPad: Go to Target Definition"
+        "command": "scriptkit.goToTarget",
+        "title": "ScriptKit: Go to Target Definition"
       }
     ],
     "menus": {
       "editor/context": [
         {
-          "command": "commandpad.pickTarget",
+          "command": "scriptkit.pickTarget",
           "when": "resourceLangId == makefile || resourceLangId == shellscript || resourceLangId == powershell || resourceLangId == bat || resourceLangId == dotenv || resourceLangId == ini || resourceLangId == properties || resourceFilename =~ /^\\.env/ || resourceFilename =~ /\\.env$/",
           "group": "navigation"
         }
       ]
     },
     "configuration": {
-      "title": "CommandPad",
+      "title": "ScriptKit",
       "properties": {
-        "commandpad.makeCommand": {
+        "scriptkit.makeCommand": {
           "type": "string",
           "default": "make",
           "description": "Path or name of the make executable."
         },
-        "commandpad.shellCommand": {
+        "scriptkit.shellCommand": {
           "type": "string",
           "default": "bash",
           "description": "Shell for running shell scripts (bash, zsh, sh)."
         },
-        "commandpad.powershellCommand": {
+        "scriptkit.powershellCommand": {
           "type": "string",
           "default": "pwsh",
           "description": "PowerShell executable (pwsh or powershell)."
         },
-        "commandpad.enableCodeLens": {
+        "scriptkit.enableCodeLens": {
           "type": "boolean",
           "default": true,
           "description": "Show Run CodeLens above targets and functions."
         },
-        "commandpad.enableDiagnostics": {
+        "scriptkit.enableDiagnostics": {
           "type": "boolean",
           "default": true,
           "description": "Enable linting and diagnostics."
@@ -150,7 +150,7 @@
     },
     "taskDefinitions": [
       {
-        "type": "commandpad-makefile",
+        "type": "scriptkit-makefile",
         "required": [
           "target"
         ],
@@ -164,7 +164,7 @@
         }
       },
       {
-        "type": "commandpad-shell",
+        "type": "scriptkit-shell",
         "required": [
           "target"
         ],
@@ -178,7 +178,7 @@
         }
       },
       {
-        "type": "commandpad-powershell",
+        "type": "scriptkit-powershell",
         "required": [
           "target"
         ],
@@ -192,7 +192,7 @@
         }
       },
       {
-        "type": "commandpad-batch",
+        "type": "scriptkit-batch",
         "required": [
           "target"
         ],
@@ -206,7 +206,7 @@
         }
       },
       {
-        "type": "commandpad-env",
+        "type": "scriptkit-env",
         "required": [
           "target"
         ],
@@ -220,7 +220,7 @@
         }
       },
       {
-        "type": "commandpad-config",
+        "type": "scriptkit-config",
         "required": [
           "target"
         ],

@@ -16,14 +16,14 @@ export class ScriptTaskProvider implements vscode.TaskProvider {
           for (const target of targets) {
             const command = this.provider.buildCommand(target, file.fsPath);
             const definition: vscode.TaskDefinition = {
-              type: `commandpad-${this.provider.id}`,
+              type: `scriptkit-${this.provider.id}`,
               target: target.name,
               file: file.fsPath,
             };
             const task = new vscode.Task(
               definition, vscode.TaskScope.Workspace,
               `${target.name} (${this.provider.displayName})`,
-              'CommandPad', new vscode.ShellExecution(command)
+              'ScriptKit', new vscode.ShellExecution(command)
             );
             task.group = vscode.TaskGroup.Build;
             task.detail = `Run ${this.provider.displayName} ${target.kind}: ${target.name}`;

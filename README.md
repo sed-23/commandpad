@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="images/icon.png" alt="CommandPad" width="128" height="128" />
+  <img src="images/icon.png" alt="ScriptKit" width="128" height="128" />
 </p>
 
-<h1 align="center">CommandPad</h1>
+<h1 align="center">ScriptKit</h1>
 
 <p align="center">
   <strong>Your launchpad for scripts &amp; configs.</strong><br/>
@@ -10,22 +10,22 @@
 </p>
 
 <p align="center">
-  <a href="https://marketplace.visualstudio.com/items?itemName=siddy.commandpad">
-    <img src="https://img.shields.io/visual-studio-marketplace/v/siddy.commandpad?style=flat-square&color=6C5CE7" alt="Version" />
+  <a href="https://marketplace.visualstudio.com/items?itemName=siddy.scriptkit">
+    <img src="https://img.shields.io/visual-studio-marketplace/v/siddy.scriptkit?style=flat-square&color=6C5CE7" alt="Version" />
   </a>
-  <a href="https://marketplace.visualstudio.com/items?itemName=siddy.commandpad">
-    <img src="https://img.shields.io/visual-studio-marketplace/i/siddy.commandpad?style=flat-square&color=0984E3" alt="Installs" />
+  <a href="https://marketplace.visualstudio.com/items?itemName=siddy.scriptkit">
+    <img src="https://img.shields.io/visual-studio-marketplace/i/siddy.scriptkit?style=flat-square&color=0984E3" alt="Installs" />
   </a>
-  <a href="https://github.com/sed-23/commandpad/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/sed-23/commandpad?style=flat-square" alt="License" />
+  <a href="https://github.com/sed-23/scriptkit/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/sed-23/scriptkit?style=flat-square" alt="License" />
   </a>
 </p>
 
 ---
 
-## Why CommandPad?
+## Why ScriptKit?
 
-Ever worked with Makefiles, shell scripts, and `.env` files in the same project? You need different tools for each. **CommandPad gives you one unified experience**:
+Ever worked with Makefiles, shell scripts, and `.env` files in the same project? You need different tools for each. **ScriptKit gives you one unified experience**:
 
 - See a `▶ Run` button above every target and function
 - Pick & run any target from a quick menu
@@ -63,7 +63,7 @@ deploy_staging() {
 
 ### 🔍 Quick Pick — Find & Run Any Target
 
-Open the Command Palette (`Ctrl+Shift+P`) → `CommandPad: Pick & Run Target`
+Open the Command Palette (`Ctrl+Shift+P`) → `ScriptKit: Pick & Run Target`
 
 ```
 ┌─ Select a Makefile target to run ───────────────┐
@@ -76,7 +76,7 @@ Open the Command Palette (`Ctrl+Shift+P`) → `CommandPad: Pick & Run Target`
 
 ### 🔎 Workspace-Wide Target Search
 
-`CommandPad: List All Targets in Workspace` — search across **all** script files in your project:
+`ScriptKit: List All Targets in Workspace` — search across **all** script files in your project:
 
 ```
 ┌─ Select a target to run from workspace ─────────────────────┐
@@ -124,9 +124,9 @@ All targets show up in `Terminal → Run Task` automatically. No `tasks.json` co
 
 | Command | Shortcut | Description |
 |---|---|---|
-| `CommandPad: Run Target` | *via CodeLens* | Run the target under the cursor |
-| `CommandPad: Pick & Run Target` | `Ctrl+Shift+P` | Pick a target from the current file |
-| `CommandPad: List All Targets` | `Ctrl+Shift+P` | Pick a target from all workspace files |
+| `ScriptKit: Run Target` | *via CodeLens* | Run the target under the cursor |
+| `ScriptKit: Pick & Run Target` | `Ctrl+Shift+P` | Pick a target from the current file |
+| `ScriptKit: List All Targets` | `Ctrl+Shift+P` | Pick a target from all workspace files |
 
 ---
 
@@ -134,20 +134,20 @@ All targets show up in `Terminal → Run Task` automatically. No `tasks.json` co
 
 | Setting | Default | Description |
 |---|---|---|
-| `commandpad.makeCommand` | `make` | Make executable path |
-| `commandpad.shellCommand` | `bash` | Shell for `.sh` scripts |
-| `commandpad.powershellCommand` | `pwsh` | PowerShell executable |
-| `commandpad.enableCodeLens` | `true` | Show ▶ Run buttons |
-| `commandpad.enableDiagnostics` | `true` | Enable linting |
+| `scriptkit.makeCommand` | `make` | Make executable path |
+| `scriptkit.shellCommand` | `bash` | Shell for `.sh` scripts |
+| `scriptkit.powershellCommand` | `pwsh` | PowerShell executable |
+| `scriptkit.enableCodeLens` | `true` | Show ▶ Run buttons |
+| `scriptkit.enableDiagnostics` | `true` | Enable linting |
 
 ---
 
 ## Getting Started
 
-1. Install **CommandPad** from the VS Code Marketplace
+1. Install **ScriptKit** from the VS Code Marketplace
 2. Open any supported file (Makefile, `.sh`, `.ps1`, `.bat`, `.env`, `.ini`)
 3. You'll see `▶ Run` buttons above targets — click to run
-4. Use `Ctrl+Shift+P` → `CommandPad: Pick & Run Target` for the quick menu
+4. Use `Ctrl+Shift+P` → `ScriptKit: Pick & Run Target` for the quick menu
 
 **That's it. No configuration required.**
 
@@ -156,8 +156,8 @@ All targets show up in `Terminal → Run Task` automatically. No `tasks.json` co
 ## Development
 
 ```bash
-git clone https://github.com/sed-23/commandpad.git
-cd commandpad
+git clone https://github.com/sed-23/scriptkit.git
+cd scriptkit
 npm install
 npm run compile
 # Press F5 to launch Extension Development Host

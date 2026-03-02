@@ -32,7 +32,7 @@ export const makefileProvider: LanguageProvider = {
   },
 
   buildCommand(target: ScriptTarget, filePath: string): string {
-    const config = vscode.workspace.getConfiguration('commandpad');
+    const config = vscode.workspace.getConfiguration('scriptkit');
     const makeCmd = config.get<string>('makeCommand', 'make');
     const dir = filePath.replace(/[/\\][^/\\]+$/, '');
     return `${makeCmd} -C "${dir}" ${target.name}`;

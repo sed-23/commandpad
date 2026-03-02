@@ -39,7 +39,7 @@ export class ScriptHoverProvider implements vscode.HoverProvider {
 
     // Run command link
     const args = encodeURIComponent(JSON.stringify([this.provider.id, target, document.uri.fsPath]));
-    md.appendMarkdown(`[▶ Run ${target.name}](command:commandpad.runTarget?${args})`);
+    md.appendMarkdown(`[▶ Run ${target.name}](command:scriptkit.runTarget?${args})`);
 
     return new vscode.Hover(md, wordRange);
   }
