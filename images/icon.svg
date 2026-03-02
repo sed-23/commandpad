@@ -1,31 +1,77 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#6C5CE7;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#0984E3;stop-opacity:1" />
-    </linearGradient>
-    <linearGradient id="play" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#DFE6E9;stop-opacity:0.9" />
-    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="45%" r="55%">
+      <stop offset="0%" style="stop-color:#1a3a1a"/>
+      <stop offset="100%" style="stop-color:#0a0a0a"/>
+    </radialGradient>
+    <filter id="textglow">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
   </defs>
-  
-  <!-- Rounded square background -->
-  <rect x="4" y="4" width="120" height="120" rx="24" ry="24" fill="url(#bg)" />
-  
-  <!-- Terminal prompt lines -->
-  <g opacity="0.3" fill="white">
-    <rect x="20" y="24" width="36" height="4" rx="2" />
-    <rect x="20" y="34" width="52" height="4" rx="2" />
-    <rect x="20" y="44" width="28" height="4" rx="2" />
+
+  <!-- Outer casing — dark bezel -->
+  <rect x="2" y="2" width="124" height="124" rx="12" ry="12" fill="#2a2a2a"/>
+  <rect x="4" y="4" width="120" height="120" rx="10" ry="10" fill="#1a1a1a"/>
+
+  <!-- CRT screen area -->
+  <rect x="10" y="10" width="108" height="96" rx="6" ry="6" fill="url(#glow)"/>
+
+  <!-- Scanlines -->
+  <g opacity="0.08" stroke="#33ff33" stroke-width="0.5">
+    <line x1="10" y1="14" x2="118" y2="14"/>
+    <line x1="10" y1="18" x2="118" y2="18"/>
+    <line x1="10" y1="22" x2="118" y2="22"/>
+    <line x1="10" y1="26" x2="118" y2="26"/>
+    <line x1="10" y1="30" x2="118" y2="30"/>
+    <line x1="10" y1="34" x2="118" y2="34"/>
+    <line x1="10" y1="38" x2="118" y2="38"/>
+    <line x1="10" y1="42" x2="118" y2="42"/>
+    <line x1="10" y1="46" x2="118" y2="46"/>
+    <line x1="10" y1="50" x2="118" y2="50"/>
+    <line x1="10" y1="54" x2="118" y2="54"/>
+    <line x1="10" y1="58" x2="118" y2="58"/>
+    <line x1="10" y1="62" x2="118" y2="62"/>
+    <line x1="10" y1="66" x2="118" y2="66"/>
+    <line x1="10" y1="70" x2="118" y2="70"/>
+    <line x1="10" y1="74" x2="118" y2="74"/>
+    <line x1="10" y1="78" x2="118" y2="78"/>
+    <line x1="10" y1="82" x2="118" y2="82"/>
+    <line x1="10" y1="86" x2="118" y2="86"/>
+    <line x1="10" y1="90" x2="118" y2="90"/>
+    <line x1="10" y1="94" x2="118" y2="94"/>
+    <line x1="10" y1="98" x2="118" y2="98"/>
+    <line x1="10" y1="102" x2="118" y2="102"/>
   </g>
-  
-  <!-- Play/Run triangle -->
-  <polygon points="46,62 92,82 46,102" fill="url(#play)" opacity="0.95" />
-  
-  <!-- Small terminal cursor blink -->
-  <rect x="22" y="54" width="8" height="3" rx="1" fill="white" opacity="0.5" />
-  
-  <!-- > prompt symbol -->
-  <text x="20" y="86" font-family="Consolas,monospace" font-size="16" font-weight="bold" fill="white" opacity="0.4">&gt;_</text>
+
+  <!-- Terminal text — green phosphor -->
+  <g filter="url(#textglow)" fill="#33ff33" font-family="Courier New, monospace" font-weight="bold">
+    <text x="18" y="36" font-size="14" opacity="0.95">$ make build</text>
+    <text x="18" y="52" font-size="11" opacity="0.55">gcc -o app main.c</text>
+    <text x="18" y="70" font-size="14" opacity="0.95">$ ./deploy.sh</text>
+    <rect x="18" y="80" width="8" height="13" opacity="0.85"/>
+  </g>
+
+  <!-- Bottom panel — vintage machine look -->
+  <rect x="10" y="108" width="108" height="14" rx="3" ry="3" fill="#222"/>
+  <!-- Vent slots -->
+  <g stroke="#333" stroke-width="1.5" stroke-linecap="round">
+    <line x1="30" y1="113" x2="30" y2="119"/>
+    <line x1="36" y1="113" x2="36" y2="119"/>
+    <line x1="42" y1="113" x2="42" y2="119"/>
+    <line x1="48" y1="113" x2="48" y2="119"/>
+    <line x1="54" y1="113" x2="54" y2="119"/>
+    <line x1="60" y1="113" x2="60" y2="119"/>
+    <line x1="66" y1="113" x2="66" y2="119"/>
+    <line x1="72" y1="113" x2="72" y2="119"/>
+    <line x1="78" y1="113" x2="78" y2="119"/>
+    <line x1="84" y1="113" x2="84" y2="119"/>
+    <line x1="90" y1="113" x2="90" y2="119"/>
+    <line x1="96" y1="113" x2="96" y2="119"/>
+  </g>
+  <!-- Power LED -->
+  <circle cx="108" cy="116" r="2.5" fill="#33ff33" opacity="0.9"/>
 </svg>

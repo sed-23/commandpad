@@ -5,7 +5,7 @@ export const configProvider: LanguageProvider = {
   id: 'config',
   displayName: 'Config',
   languageIds: ['ini', 'properties', 'plaintext'],
-  filePatterns: ['**/*.ini', '**/*.cfg', '**/*.conf', '**/*.config', '**/*.properties'],
+  filePatterns: ['**/*.ini', '**/*.cfg', '**/*.conf', '**/*.config', '**/*.properties', '**/*.cnf', '**/*.inf', '**/.editorconfig'],
 
   parseTargets(content: string): ScriptTarget[] {
     const targets: ScriptTarget[] = [];

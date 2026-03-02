@@ -5,7 +5,7 @@ export const makefileProvider: LanguageProvider = {
   id: 'makefile',
   displayName: 'Makefile',
   languageIds: ['makefile'],
-  filePatterns: ['**/Makefile', '**/makefile', '**/GNUmakefile', '**/*.mk'],
+  filePatterns: ['**/Makefile', '**/makefile', '**/GNUmakefile', '**/*.mk', '**/*.make'],
 
   parseTargets(content: string): ScriptTarget[] {
     const targets: ScriptTarget[] = [];

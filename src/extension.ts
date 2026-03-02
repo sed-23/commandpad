@@ -8,13 +8,24 @@ import { ScriptCompletionProvider } from './core/completions';
 import { ScriptDiagnosticsManager } from './core/diagnostics';
 import { ScriptTaskProvider } from './core/taskProvider';
 import { ScriptDocumentSymbolProvider } from './core/symbols';
+import { ScriptHoverProvider } from './core/hover';
+import { ScriptDefinitionProvider } from './core/definition';
+import { ScriptRenameProvider } from './core/rename';
+import { ScriptReferenceProvider } from './core/references';
+import { StatusBarManager } from './core/statusbar';
 
 const runner = new ScriptRunner();
 const diagnosticsManagers: ScriptDiagnosticsManager[] = [];
+let statusBar: StatusBarManager;
 
 export function activate(context: vscode.ExtensionContext) {
   const output = vscode.window.createOutputChannel('CommandPad');
   output.appendLine('CommandPad is now active!');
+
+  // Status bar
+  statusBar = new StatusBarManager();
+  statusBar.activate();
+  context.subscriptions.push(statusBar);
 
   // Register all providers
   for (const provider of allProviders) {
@@ -49,13 +60,11 @@ export function activate(context: vscode.ExtensionContext) {
       }
 
       const doc = editor.document;
-      const provider = allProviders.find((p) =>
-        p.languageIds.includes(doc.languageId)
-      );
+      const provider = findProvider(doc);
 
       if (!provider) {
         vscode.window.showWarningMessage(
-          `CommandPad: No provider for language "${doc.languageId}".`
+          `CommandPad: No provider for this file type.`
         );
         return;
       }
@@ -149,11 +158,32 @@ export function activate(context: vscode.ExtensionContext) {
   );
 }
 
+/** Build a document selector that matches both by languageId and file pattern */
+function buildSelector(provider: LanguageProvider): vscode.DocumentSelector {
+  return [
+    ...provider.languageIds.map((id) => ({ language: id })),
+    ...provider.filePatterns.map((pattern) => ({ scheme: 'file', pattern })),
+  ];
+}
+
+/** Find the best provider for a given document (by languageId or filename) */
+function findProvider(doc: vscode.TextDocument): LanguageProvider | undefined {
+  // Try languageId first (most precise)
+  const byLang = allProviders.find((p) => p.languageIds.includes(doc.languageId));
+  if (byLang) { return byLang; }
+
+  // Fall back to file-pattern matching
+  return allProviders.find((p) => {
+    const selector = buildSelector(p);
+    return vscode.languages.match(selector, doc) > 0;
+  });
+}
+
 function registerProvider(
   context: vscode.ExtensionContext,
   provider: LanguageProvider
 ): void {
-  const selectors = provider.languageIds.map((id) => ({ language: id }));
+  const selectors = buildSelector(provider);
 
   // CodeLens
   context.subscriptions.push(
@@ -176,6 +206,38 @@ function registerProvider(
     vscode.languages.registerDocumentSymbolProvider(
       selectors,
       new ScriptDocumentSymbolProvider(provider)
+    )
+  );
+
+  // Hover
+  context.subscriptions.push(
+    vscode.languages.registerHoverProvider(
+      selectors,
+      new ScriptHoverProvider(provider)
+    )
+  );
+
+  // Go to Definition
+  context.subscriptions.push(
+    vscode.languages.registerDefinitionProvider(
+      selectors,
+      new ScriptDefinitionProvider(provider)
+    )
+  );
+
+  // Rename
+  context.subscriptions.push(
+    vscode.languages.registerRenameProvider(
+      selectors,
+      new ScriptRenameProvider(provider)
+    )
+  );
+
+  // Find References
+  context.subscriptions.push(
+    vscode.languages.registerReferenceProvider(
+      selectors,
+      new ScriptReferenceProvider(provider)
     )
   );
 
@@ -202,4 +264,5 @@ function registerProvider(
 export function deactivate(): void {
   runner.dispose();
   diagnosticsManagers.forEach((m) => m.dispose());
+  statusBar?.dispose();
 }

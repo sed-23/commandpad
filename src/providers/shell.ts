@@ -5,7 +5,7 @@ export const shellProvider: LanguageProvider = {
   id: 'shell',
   displayName: 'Shell',
   languageIds: ['shellscript'],
-  filePatterns: ['**/*.sh', '**/*.bash', '**/*.zsh'],
+  filePatterns: ['**/*.sh', '**/*.bash', '**/*.zsh', '**/*.ksh', '**/.bashrc', '**/.bash_profile', '**/.bash_aliases', '**/.bash_logout', '**/.zshrc', '**/.zshenv', '**/.zprofile', '**/.profile'],
 
   parseTargets(content: string): ScriptTarget[] {
     const targets: ScriptTarget[] = [];

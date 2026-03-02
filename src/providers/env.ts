@@ -5,7 +5,7 @@ export const envProvider: LanguageProvider = {
   id: 'env',
   displayName: 'Environment',
   languageIds: ['dotenv', 'properties', 'plaintext'],
-  filePatterns: ['**/.env', '**/.env.*', '**/.env.local', '**/.env.development', '**/.env.production', '**/.env.test'],
+  filePatterns: ['**/.env', '**/.env.*', '**/*.env', '**/.flaskenv'],
 
   parseTargets(content: string): ScriptTarget[] {
     const targets: ScriptTarget[] = [];

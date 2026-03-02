@@ -42,11 +42,55 @@
     "workspaceContains:**/*.ps1",
     "workspaceContains:**/*.bat",
     "workspaceContains:**/.env",
+    "workspaceContains:**/.env.*",
+    "workspaceContains:**/*.env",
     "workspaceContains:**/*.ini",
-    "workspaceContains:**/*.conf"
+    "workspaceContains:**/*.cfg",
+    "workspaceContains:**/*.conf",
+    "workspaceContains:**/*.cnf",
+    "workspaceContains:**/*.properties",
+    "workspaceContains:**/.bashrc",
+    "workspaceContains:**/.zshrc",
+    "workspaceContains:**/*.ksh"
   ],
   "main": "./out/extension.js",
   "contributes": {
+    "languages": [
+      {
+        "id": "dotenv",
+        "aliases": [
+          "Environment Variables",
+          "dotenv",
+          "env"
+        ],
+        "filenames": [
+          ".env",
+          ".flaskenv"
+        ],
+        "filenamePatterns": [
+          ".env.*",
+          "*.env"
+        ]
+      },
+      {
+        "id": "ini",
+        "aliases": [
+          "INI",
+          "Config"
+        ],
+        "extensions": [
+          ".ini",
+          ".cfg",
+          ".conf",
+          ".cnf",
+          ".inf",
+          ".properties"
+        ],
+        "filenames": [
+          ".editorconfig"
+        ]
+      }
+    ],
     "commands": [
       {
         "command": "commandpad.runTarget",
@@ -59,13 +103,17 @@
       {
         "command": "commandpad.listAllTargets",
         "title": "CommandPad: List All Targets in Workspace"
+      },
+      {
+        "command": "commandpad.goToTarget",
+        "title": "CommandPad: Go to Target Definition"
       }
     ],
     "menus": {
       "editor/context": [
         {
           "command": "commandpad.pickTarget",
-          "when": "resourceLangId == makefile || resourceLangId == shellscript || resourceLangId == powershell || resourceLangId == bat || resourceLangId == dotenv || resourceLangId == ini || resourceLangId == properties",
+          "when": "resourceLangId == makefile || resourceLangId == shellscript || resourceLangId == powershell || resourceLangId == bat || resourceLangId == dotenv || resourceLangId == ini || resourceLangId == properties || resourceFilename =~ /^\\.env/ || resourceFilename =~ /\\.env$/",
           "group": "navigation"
         }
       ]
