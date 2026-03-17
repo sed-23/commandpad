@@ -4,7 +4,7 @@ import { LanguageProvider, ScriptTarget, TargetKind, DiagnosticInfo } from '../c
 export const envProvider: LanguageProvider = {
   id: 'env',
   displayName: 'Environment',
-  languageIds: ['dotenv', 'properties', 'plaintext'],
+  languageIds: ['dotenv'],
   filePatterns: ['**/.env', '**/.env.*', '**/*.env', '**/.flaskenv'],
 
   parseTargets(content: string): ScriptTarget[] {

@@ -4,7 +4,7 @@ import { LanguageProvider, ScriptTarget, TargetKind, DiagnosticInfo } from '../c
 export const configProvider: LanguageProvider = {
   id: 'config',
   displayName: 'Config',
-  languageIds: ['ini', 'properties', 'plaintext'],
+  languageIds: ['ini'],
   filePatterns: ['**/*.ini', '**/*.cfg', '**/*.conf', '**/*.config', '**/*.properties', '**/*.cnf', '**/*.inf', '**/.editorconfig'],
 
   parseTargets(content: string): ScriptTarget[] {
